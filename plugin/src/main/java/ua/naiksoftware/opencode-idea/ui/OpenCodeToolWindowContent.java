@@ -1,10 +1,10 @@
-package ua.naiksoftware.opencode-idea.ui;
+package ua.naiksoftware.opencodeidea.ui;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.components.JBTextArea;
-import ua.naiksoftware.opencode-idea.services.OpenCodeApiService;
-import ua.naiksoftware.opencode-idea.services.OpenCodeApiServiceImpl;
+import ua.naiksoftware.opencodeidea.services.OpenCodeApiService;
+import ua.naiksoftware.opencodeidea.services.OpenCodeApiServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;

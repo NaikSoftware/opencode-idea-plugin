@@ -1,4 +1,4 @@
-package ua.naiksoftware.opencode-idea.services;
+package ua.naiksoftware.opencodeidea.services;
 
 import com.intellij.openapi.components.Service;
 import org.jetbrains.annotations.NotNull;

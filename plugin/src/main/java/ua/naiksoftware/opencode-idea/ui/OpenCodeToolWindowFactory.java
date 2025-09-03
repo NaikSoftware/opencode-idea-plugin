@@ -1,4 +1,4 @@
-package ua.naiksoftware.opencode-idea.ui;
+package ua.naiksoftware.opencodeidea.ui;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;

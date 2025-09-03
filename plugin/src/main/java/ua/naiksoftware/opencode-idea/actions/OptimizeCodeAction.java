@@ -1,4 +1,4 @@
-package ua.naiksoftware.opencode-idea.actions;
+package ua.naiksoftware.opencodeidea.actions;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -9,8 +9,8 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
-import ua.naiksoftware.opencode-idea.services.OpenCodeApiService;
-import ua.naiksoftware.opencode-idea.services.OpenCodeApiServiceImpl;
+import ua.naiksoftware.opencodeidea.services.OpenCodeApiService;
+import ua.naiksoftware.opencodeidea.services.OpenCodeApiServiceImpl;
 import org.jetbrains.annotations.NotNull;
 
 public class OptimizeCodeAction extends AnAction {

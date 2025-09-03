@@ -1,10 +1,10 @@
-package ua.naiksoftware.opencode-idea.settings;
+package ua.naiksoftware.opencodeidea.settings;
 
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.util.NlsContexts;
-import ua.naiksoftware.opencode-idea.services.OpenCodeApiService;
-import ua.naiksoftware.opencode-idea.services.OpenCodeApiServiceImpl;
+import ua.naiksoftware.opencodeidea.services.OpenCodeApiService;
+import ua.naiksoftware.opencodeidea.services.OpenCodeApiServiceImpl;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,10 +40,22 @@ public class OpenCodeConfigurable implements Configurable {
     @Override
     public void apply() throws ConfigurationException {
         if (settingsPanel != null) {
-            String apiUrl = settingsPanel.getApiUrl();
-
-            apiService.setApiUrl(apiUrl);
-            settingsPanel.setModified(false);
+            // Validate settings
+            String baseUrl = settingsPanel.getBaseUrl();
+            if (baseUrl.isEmpty()) {
+                throw new ConfigurationException("Base URL cannot be empty");
+            }
+            
+            int timeout = settingsPanel.getTimeoutSeconds();
+            if (timeout <= 0) {
+                throw new ConfigurationException("Timeout must be a positive number");
+            }
+            
+            // Apply settings
+            settingsPanel.apply();
+            
+            // Update API service with new base URL
+            apiService.setApiUrl(baseUrl);
         }
     }
     

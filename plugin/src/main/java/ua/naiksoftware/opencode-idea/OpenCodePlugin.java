@@ -1,4 +1,4 @@
-package ua.naiksoftware.opencode-idea;
+package ua.naiksoftware.opencodeidea;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.startup.StartupActivity;

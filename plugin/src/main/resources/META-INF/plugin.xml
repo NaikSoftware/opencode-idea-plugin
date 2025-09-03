@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+    <id>com.opencode.intellij</id>
+    <name>OpenCode AI Assistant</name>
+    <vendor email="support@opencode.com" url="https://opencode.com">OpenCode</vendor>
+
+    <description><![CDATA[
+    OpenCode AI Assistant integrates directly with your IntelliJ IDEA to provide intelligent code suggestions,
+    analysis, and assistance powered by OpenCode's AI capabilities.
+    
+    Features:
+    - AI-powered code completion and suggestions
+    - Code analysis and optimization recommendations  
+    - Context-aware assistance based on your project
+    - Direct integration with OpenCode API
+    ]]></description>
+
+    <version>1.0.0</version>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Tool Window -->
+        <toolWindow id="OpenCode Assistant" 
+                   secondary="true" 
+                   anchor="right" 
+                   factoryClass="com.opencode.intellij.ui.OpenCodeToolWindowFactory"/>
+        
+        <!-- Application Settings -->
+        <applicationConfigurable 
+            parentId="tools" 
+            instance="com.opencode.intellij.settings.OpenCodeConfigurable"
+            id="com.opencode.intellij.settings.OpenCodeConfigurable"
+            displayName="OpenCode AI Assistant"/>
+            
+        <!-- Application Service -->
+        <applicationService serviceImplementation="com.opencode.intellij.services.OpenCodeApiServiceImpl"/>
+    </extensions>
+
+    <actions>
+        <!-- Main Menu Actions -->
+        <group id="OpenCodeActions" text="OpenCode" description="OpenCode AI Assistant Actions">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            
+            <action id="OpenCodeAskAction" 
+                   class="com.opencode.intellij.actions.AskOpenCodeAction" 
+                   text="Ask OpenCode AI" 
+                   description="Ask OpenCode AI about selected code">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt O"/>
+            </action>
+            
+            <action id="OpenCodeOptimizeAction" 
+                   class="com.opencode.intellij.actions.OptimizeCodeAction" 
+                   text="Optimize Code" 
+                   description="Ask OpenCode AI to optimize selected code">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt P"/>
+            </action>
+            
+            <action id="OpenCodeExplainAction" 
+                   class="com.opencode.intellij.actions.ExplainCodeAction" 
+                   text="Explain Code" 
+                   description="Ask OpenCode AI to explain selected code"/>
+        </group>
+
+        <!-- Editor Context Menu Actions -->
+        <group id="OpenCodeEditorActions" text="OpenCode AI">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <reference ref="OpenCodeAskAction"/>
+            <reference ref="OpenCodeOptimizeAction"/>
+            <reference ref="OpenCodeExplainAction"/>
+        </group>
+    </actions>
+</idea-plugin>

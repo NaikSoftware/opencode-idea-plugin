@@ -12,20 +12,16 @@ public class OpenCodeSettingsPanel {
     
     private final JPanel panel;
     private final JBTextField apiUrlField;
-    private final JBPasswordField apiKeyField;
     private boolean isModified = false;
-    
+
     public OpenCodeSettingsPanel() {
         apiUrlField = new JBTextField("http://localhost:8080/api/v1/chat");
-        apiKeyField = new JBPasswordField();
-        
+
         // Add change listeners
         apiUrlField.getDocument().addDocumentListener(new SimpleDocumentListener());
-        apiKeyField.getDocument().addDocumentListener(new SimpleDocumentListener());
-        
+
         panel = FormBuilder.createFormBuilder()
                 .addLabeledComponent(new JBLabel("API URL:"), apiUrlField, 1, false)
-                .addLabeledComponent(new JBLabel("API Key:"), apiKeyField, 1, false)
                 .addComponentFillVertically(new JPanel(), 0)
                 .getPanel();
     }
@@ -38,10 +34,6 @@ public class OpenCodeSettingsPanel {
         return apiUrlField.getText().trim();
     }
     
-    public String getApiKey() {
-        return new String(apiKeyField.getPassword());
-    }
-    
     public boolean isModified() {
         return isModified;
     }
@@ -52,7 +44,6 @@ public class OpenCodeSettingsPanel {
     
     public void reset() {
         apiUrlField.setText("http://localhost:8080/api/v1/chat");
-        apiKeyField.setText("");
         isModified = false;
     }
     

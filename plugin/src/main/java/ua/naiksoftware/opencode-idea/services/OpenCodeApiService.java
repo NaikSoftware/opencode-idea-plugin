@@ -15,8 +15,6 @@ public interface OpenCodeApiService {
     CompletableFuture<String> explainCode(@NotNull String code);
     
     boolean isConfigured();
-    
-    void setApiKey(@NotNull String apiKey);
-    
+
     void setApiUrl(@NotNull String apiUrl);
 }

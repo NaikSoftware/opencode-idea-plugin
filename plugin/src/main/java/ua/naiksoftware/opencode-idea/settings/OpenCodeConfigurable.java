@@ -40,14 +40,8 @@ public class OpenCodeConfigurable implements Configurable {
     @Override
     public void apply() throws ConfigurationException {
         if (settingsPanel != null) {
-            String apiKey = settingsPanel.getApiKey();
             String apiUrl = settingsPanel.getApiUrl();
-            
-            if (apiKey.trim().isEmpty()) {
-                throw new ConfigurationException("API Key is required");
-            }
-            
-            apiService.setApiKey(apiKey);
+
             apiService.setApiUrl(apiUrl);
             settingsPanel.setModified(false);
         }

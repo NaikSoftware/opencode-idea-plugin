@@ -24,7 +24,6 @@ public final class OpenCodeApiServiceImpl implements OpenCodeApiService {
     private final HttpClient httpClient;
     private final Gson gson;
     
-    private String apiKey = "";
     private String apiUrl = DEFAULT_API_URL;
     
     public OpenCodeApiServiceImpl() {
@@ -48,7 +47,6 @@ public final class OpenCodeApiServiceImpl implements OpenCodeApiService {
                 HttpRequest httpRequest = HttpRequest.newBuilder()
                         .uri(URI.create(apiUrl))
                         .header("Content-Type", "application/json")
-                        .header("Authorization", "Bearer " + apiKey)
                         .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
                         .timeout(Duration.ofMinutes(2))
                         .build();
@@ -83,12 +81,7 @@ public final class OpenCodeApiServiceImpl implements OpenCodeApiService {
     
     @Override
     public boolean isConfigured() {
-        return !apiKey.isEmpty() && !apiUrl.isEmpty();
-    }
-    
-    @Override
-    public void setApiKey(@NotNull String apiKey) {
-        this.apiKey = apiKey;
+        return !apiUrl.isEmpty();
     }
     
     @Override

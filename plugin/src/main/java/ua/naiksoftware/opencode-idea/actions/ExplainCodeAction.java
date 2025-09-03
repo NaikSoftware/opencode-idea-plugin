@@ -23,13 +23,7 @@ public class ExplainCodeAction extends AnAction {
         }
         
         OpenCodeApiService apiService = OpenCodeApiServiceImpl.getInstance();
-        if (!apiService.isConfigured()) {
-            Messages.showErrorDialog(project,
-                    "Please configure the OpenCode API in Settings > Tools > OpenCode AI Assistant",
-                    "OpenCode Not Configured");
-            return;
-        }
-        
+
         SelectionModel selectionModel = editor.getSelectionModel();
         String selectedCode = selectionModel.getSelectedText();
         

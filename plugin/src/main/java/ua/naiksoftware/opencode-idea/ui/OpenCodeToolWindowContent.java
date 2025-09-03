@@ -61,14 +61,7 @@ public class OpenCodeToolWindowContent {
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, inputPanel, responsePanel);
         splitPane.setDividerLocation(150);
         panel.add(splitPane, BorderLayout.CENTER);
-        
-        // Configuration status
-        JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel statusLabel = new JLabel(apiService.isConfigured() ? 
-                "✓ Connected to OpenCode API" : "⚠ API not configured");
-        statusPanel.add(statusLabel);
-        panel.add(statusPanel, BorderLayout.SOUTH);
-        
+
         return panel;
     }
     
@@ -85,11 +78,6 @@ public class OpenCodeToolWindowContent {
         public void actionPerformed(ActionEvent e) {
             String input = inputArea.getText().trim();
             if (input.isEmpty()) {
-                return;
-            }
-            
-            if (!apiService.isConfigured()) {
-                responseArea.setText("Please configure the OpenCode API in Settings > Tools > OpenCode AI Assistant");
                 return;
             }
             

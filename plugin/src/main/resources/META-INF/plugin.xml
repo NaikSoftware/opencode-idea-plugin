@@ -37,6 +37,9 @@
         <!-- Application Services -->
         <applicationService serviceImplementation="ua.naiksoftware.opencodeidea.services.OpenCodeApiServiceImpl"/>
         <applicationService serviceImplementation="ua.naiksoftware.opencodeidea.config.OpenCodeConfig"/>
+        
+        <!-- Project Services -->
+        <projectService serviceImplementation="ua.naiksoftware.opencodeidea.services.OpenCodeServerManager"/>
     </extensions>
 
     <actions>

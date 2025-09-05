@@ -5,7 +5,7 @@ IntelliJ IDEA plugin that provides AI-powered code assistance through OpenCode A
 
 ## Build/Test Commands
 
-- **Build plugin**: `./gradlew buildPlugin`
+- **Build plugin**: `./gradlew buildPlugin` (from plugin/ directory)
 - **Run in sandbox**: `./gradlew runIde`
 - **Clean build**: `./gradlew clean buildPlugin`
 - **Test**: `./gradlew test` (JUnit 4 tests)
@@ -14,10 +14,10 @@ IntelliJ IDEA plugin that provides AI-powered code assistance through OpenCode A
 
 ## Code Style Guidelines
 
-- **Language**: Java 17 with IntelliJ Platform SDK
-- **Package**: `ua.naiksoftware.opencode-idea.*`
+- **Language**: Java 17 with IntelliJ Platform SDK 2024.2.4
+- **Package**: `ua.naiksoftware.opencodeidea.*` (note: no hyphens in package names)
 - **Naming**: PascalCase for classes, camelCase for methods/variables
-- **Imports**: IntelliJ annotations (@NotNull, @Nullable)
+- **Imports**: IntelliJ annotations (@NotNull, @Nullable), organize imports
 - **Error handling**: LOG.error() for exceptions, CompletableFuture for async
 - **Architecture**: Actions, Services, UI components, Settings
 - **Dependencies**: Gson for JSON, HttpClient for API calls

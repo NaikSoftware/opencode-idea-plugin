@@ -14,35 +14,11 @@ An IntelliJ IDEA plugin that integrates with [OpenCode](https://opencode.ai) - a
 ## Prerequisites
 
 - IntelliJ IDEA 2024.1 or later
-- OpenCode server running (see [Installation](#installation))
 - Java 17+
 
 ## Installation
 
-### 1. Install OpenCode Server
-
-```bash
-# Install OpenCode
-curl -fsSL https://opencode.ai/install | bash
-
-# Or use package managers
-npm i -g opencode-ai@latest        # npm
-brew install sst/tap/opencode      # macOS/Linux
-```
-
-### 2. Start OpenCode Server
-
-Use the provided startup script:
-
-```bash
-# Start server on port 1993 (default)
-./start-opencode-server.sh
-
-# Or start manually
-opencode serve --port 1993 --hostname localhost
-```
-
-### 3. Install Plugin
+### 1. Install Plugin
 
 1. Download the latest plugin from [Releases](https://github.com/NaikSoftware/opencode-idea-plugin/releases)
 2. In IntelliJ IDEA: `File` → `Settings` → `Plugins` → `⚙️` → `Install Plugin from Disk...`
@@ -158,10 +134,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### v1.0.0 (Latest)
 
+- ✅ Automatic OpenCode server startup and management
 - ✅ Proper OpenCode session-based API integration
 - ✅ Centralized configuration management
 - ✅ Enhanced settings panel with multiple options
 - ✅ Session management with automatic creation/caching
 - ✅ Fixed package naming and build issues
-- ✅ Added OpenCode server startup script
 - ✅ Comprehensive error handling and logging

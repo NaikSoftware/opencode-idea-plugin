@@ -34,6 +34,12 @@ public final class OpenCodeApiServiceImpl implements OpenCodeApiService {
     @Nullable
     private String currentSessionId;
     
+    @Nullable
+    private String currentMessageId;
+    
+    @Nullable
+    private OpenCodeEventService eventService;
+    
     public OpenCodeApiServiceImpl() {
         this.httpClient = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(30))
@@ -60,6 +66,9 @@ public final class OpenCodeApiServiceImpl implements OpenCodeApiService {
                 if (serverUrl == null) {
                     throw new IllegalStateException("Failed to start OpenCode server. Please ensure 'opencode' is installed and available in PATH or project directory.");
                 }
+                
+                // Initialize event service if not already done
+                initializeEventService(project, serverUrl);
                 
                 // Use local server
                 return sendRequestToServer(prompt, code, serverUrl);
@@ -117,6 +126,8 @@ public final class OpenCodeApiServiceImpl implements OpenCodeApiService {
         
         if (response.statusCode() == 200) {
             OpenCodeMessage message = gson.fromJson(response.body(), OpenCodeMessage.class);
+            // Store the message ID for streaming updates
+            currentMessageId = message.getInfo().getId();
             return message.getTextContent();
         } else {
             LOG.warn("API request failed with status: " + response.statusCode() + ", body: " + response.body());
@@ -208,6 +219,37 @@ public final class OpenCodeApiServiceImpl implements OpenCodeApiService {
     
     public String getCurrentSessionId() {
         return currentSessionId;
+    }
+    
+    public String getCurrentMessageId() {
+        return currentMessageId;
+    }
+    
+    private void initializeEventService(@NotNull Project project, @NotNull String serverUrl) {
+        if (eventService == null) {
+            eventService = OpenCodeEventService.getInstance(project);
+            LOG.info("Event service initialized for real-time communication");
+        }
+        
+        // Connect to event stream if not already connected
+        if (!eventService.isConnected()) {
+            eventService.connect(serverUrl);
+            LOG.info("Connecting to OpenCode event stream");
+        }
+    }
+    
+    @Nullable
+    public OpenCodeEventService getEventService() {
+        return eventService;
+    }
+    
+    public void disconnect() {
+        if (eventService != null) {
+            eventService.disconnect();
+            eventService = null;
+        }
+        clearSession();
+        LOG.info("Disconnected from OpenCode services");
     }
     
     public static OpenCodeApiServiceImpl getInstance() {

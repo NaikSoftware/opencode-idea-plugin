@@ -40,6 +40,9 @@
         
         <!-- Project Services -->
         <projectService serviceImplementation="ua.naiksoftware.opencodeidea.services.OpenCodeServerManager"/>
+        
+        <!-- Startup Activity -->
+        <startupActivity implementation="ua.naiksoftware.opencodeidea.OpenCodePlugin"/>
     </extensions>
 
     <actions>

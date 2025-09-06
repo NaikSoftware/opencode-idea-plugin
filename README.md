@@ -4,12 +4,13 @@ An IntelliJ IDEA plugin that integrates with [OpenCode](https://opencode.ai) - a
 
 ## Features
 
-- 🤖 **AI-powered code assistance** - Get intelligent code suggestions and explanations
-- ⚡ **Code optimization** - Optimize your code with AI recommendations  
-- 📖 **Code explanation** - Understand what your code does with detailed explanations
-- 🎛️ **Configurable settings** - Customize server URL, AI model, and timeout settings
-- 🔌 **Session-based API** - Efficient communication with OpenCode server
-- ⌨️ **Keyboard shortcuts** - Quick access via `Ctrl+Alt+O` and `Ctrl+Alt+P`
+- 💬 **Chat-like Interface** - Modern conversational UI similar to ChatGPT/Claude
+- 📝 **Markdown Support** - Full markdown rendering with syntax highlighting  
+- 🤖 **AI Code Assistance** - Get intelligent code suggestions and explanations
+- ⚡ **Code Optimization** - Optimize your code with AI recommendations  
+- 📖 **Code Explanation** - Understand what your code does with detailed explanations
+- 🔄 **Session Management** - Persistent conversations with automatic server management
+- ⌨️ **Keyboard Shortcuts** - Quick access via `Ctrl+Alt+O` and `Ctrl+Alt+P`
 
 ## Prerequisites
 
@@ -51,7 +52,7 @@ Access via `Tools` → `OpenCode` menu:
 
 ### Tool Window
 
-Access the OpenCode Assistant tool window from the right sidebar for interactive chat.
+Access the OpenCode Assistant tool window from the right sidebar for an interactive chat interface with markdown support and conversation history.
 
 ## API Integration
 
@@ -70,46 +71,50 @@ The plugin uses OpenCode's session-based API:
 
 ## Development
 
-### Building the Plugin
+### Quick Start
 
 ```bash
-cd plugin
-./gradlew buildPlugin
+cd plugin/
+./dev.sh build    # Build plugin ZIP
+./dev.sh run      # Test in IDE sandbox
+./dev.sh dev      # Start hot reload development
 ```
 
-The built plugin will be in `build/distributions/`.
+### Development Commands
 
-### Running in Development
+- `./dev.sh build` - Build plugin ZIP for distribution
+- `./dev.sh run` - Launch IDE sandbox with plugin installed
+- `./dev.sh dev` - Start continuous build with hot reload
+- `./dev.sh debug` - Launch IDE with debugger (port 5005)
+- `./dev.sh test` - Run all tests
+- `./dev.sh clean` - Clean build directory
 
-```bash
-./gradlew runIde
-```
+See [AGENTS.md](AGENTS.md) for comprehensive development guidelines.
 
-### Testing
-
-```bash
-./gradlew test
-```
-
-## Project Structure
+## Architecture
 
 ```
 plugin/src/main/java/ua/naiksoftware/opencodeidea/
-├── actions/           # IntelliJ actions (menu items, shortcuts)
-├── config/            # Centralized configuration management  
-├── model/             # Data models for OpenCode API
-├── services/          # API communication services
+├── actions/           # Menu items and keyboard shortcuts
+├── config/            # Configuration management  
+├── model/             # API data models
+├── services/          # API communication and server management
 ├── settings/          # Plugin settings UI
-└── ui/                # Tool window and UI components
+└── ui/                # Chat interface and UI components
+    ├── ChatInterface.java      # Main chat UI panel
+    ├── ChatMessage.java        # Message data model  
+    ├── ChatHistory.java        # Conversation management
+    ├── ChatMessagePanel.java   # Message rendering with markdown
+    └── MarkdownRenderer.java   # CommonMark-based rendering
 ```
 
-## Key Components
+## Key Features
 
-- **OpenCodeConfig** - Centralized configuration with persistent storage
-- **OpenCodeApiServiceImpl** - Session-based API integration  
-- **Data Models** - OpenCodeSession, OpenCodeMessage, OpenCodeRequest
-- **Settings Panel** - Configurable server URL, model, and timeout
-- **Action Classes** - Code optimization, explanation, and general assistance
+- **Modern Chat UI** - Conversational interface with message bubbles
+- **Markdown Rendering** - Full CommonMark support with syntax highlighting
+- **Hot Reload Development** - Continuous builds for efficient development
+- **Automatic Server Management** - Local OpenCode server lifecycle handling
+- **Session-based API** - Persistent conversations with proper error handling
 
 ## Contributing
 
@@ -134,10 +139,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### v1.0.0 (Latest)
 
-- ✅ Automatic OpenCode server startup and management
-- ✅ Proper OpenCode session-based API integration
-- ✅ Centralized configuration management
-- ✅ Enhanced settings panel with multiple options
-- ✅ Session management with automatic creation/caching
-- ✅ Fixed package naming and build issues
-- ✅ Comprehensive error handling and logging
+- ✅ **Modern Chat Interface** - ChatGPT/Claude-style conversation UI
+- ✅ **Markdown Support** - Full rendering with syntax highlighting
+- ✅ **Hot Reload Development** - Continuous builds for efficient development
+- ✅ **Automatic Server Management** - Local OpenCode server lifecycle
+- ✅ **Session-based API** - Persistent conversations with proper error handling
+- ✅ **Development Tools** - Comprehensive build and testing scripts
